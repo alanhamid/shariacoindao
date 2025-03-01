@@ -1,0 +1,141 @@
+// Project: Sharia Coin DAO - Full React Project (Starter Template)
+// Folder Structure:
+
+// sharia-coin-dao/
+// ├── public/
+// │   ├── logo.png (Logo file goes here)
+// │   └── index.html
+// ├── src/
+// │   ├── assets/
+// │   ├── components/
+// │   ├── pages/
+// │   ├── App.jsx
+// │   ├── main.jsx
+// │   └── index.css
+// ├── .gitignore
+// ├── package.json
+// ├── tailwind.config.js
+// └── README.md
+
+// Example file contents for key files
+
+// tailwind.config.js
+module.exports = {
+  content: ["./index.html", "./src/**/*.{js,jsx}",],
+  theme: {
+    extend: {
+      colors: {
+        sand: '#F4E6D7',
+        gold: '#D4AF37',
+        deepGreen: '#0B6623',
+        softWhite: '#FAFAFA',
+        lightGold: '#FBE4A6',
+      }
+    },
+  },
+  plugins: [],
+}
+
+// src/App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Tokenomics from './pages/Tokenomics';
+import Roadmap from './pages/Roadmap';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    <div className="bg-sand text-softWhite min-h-screen">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tokenomics" element={<Tokenomics />} />
+          <Route path="/roadmap" element={<Roadmap />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
+// src/components/Header.jsx
+import { Link } from 'react-router-dom';
+import WalletConnectButton from './WalletConnectButton';
+
+function Header() {
+  return (
+    <header className="py-4 flex justify-between items-center px-6 border-b border-lightGold">
+      <img src="/logo.png" alt="Sharia Coin DAO Logo" className="h-12" />
+      <nav className="flex space-x-6">
+        <Link to="/" className="hover:text-gold">Home</Link>
+        <Link to="/tokenomics" className="hover:text-gold">Tokenomics</Link>
+        <Link to="/roadmap" className="hover:text-gold">Roadmap</Link>
+      </nav>
+      <WalletConnectButton />
+    </header>
+  );
+}
+
+export default Header;
+
+// src/components/WalletConnectButton.jsx
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+
+function WalletConnectButton() {
+  return (
+    <WalletMultiButton className="bg-deepGreen text-white px-4 py-2 rounded hover:bg-gold" />
+  );
+}
+
+export default WalletConnectButton;
+
+// src/pages/Home.jsx
+function Home() {
+  return (
+    <section className="text-center py-20">
+      <img src="/logo.png" alt="Sharia Coin Logo" className="mx-auto h-24 mb-6" />
+      <h1 className="text-4xl font-bold text-gold">Welcome to Sharia Coin DAO</h1>
+      <p className="mt-4 text-lg">Empowering Palestine’s Future, Guided by Sharia Principles.</p>
+      <div className="mt-6 space-x-4">
+        <a href="#invest" className="bg-deepGreen text-white px-6 py-3 rounded-xl hover:bg-gold">Invest</a>
+        <a href="#donate" className="bg-gold text-white px-6 py-3 rounded-xl">Donate</a>
+        <a href="#govern" className="bg-deepGreen text-white px-6 py-3 rounded-xl hover:bg-gold">Govern</a>
+      </div>
+    </section>
+  );
+}
+
+export default Home;
+
+// The same pattern applies to Tokenomics.jsx, Roadmap.jsx, and Footer.jsx
+
+// README.md
+# Sharia Coin DAO Website
+
+This is a React + Vite project styled with Tailwind CSS.
+
+## Install & Run
+```
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Deploy to Netlify
+- Push to GitHub
+- Connect repo to Netlify
+- Configure environment variables if needed
+
+## Folder Structure
+- `src/` contains components, pages, and assets
+- `public/` holds static files like `logo.png`
+
+## Wallet Integration
+- Solana wallet connect powered by `@solana/wallet-adapter-react`.
